@@ -1,10 +1,21 @@
 package com.example.project;
+import java.util.Scanner;
 
-public class TipCalculator {
+public class extraCredit {
     //WRITE YOUR PROGRAM IN calculateTip
     public static String calculateTip(int people, int percent, double cost) { //You must use these  variable in your calculations
         //DO NOT DELETE ANY OF THE CODE BELOW      
         StringBuilder result = new StringBuilder();
+        Scanner scan = new Scanner(System.in);
+    
+        String userInput = ""; // stores current user input
+        String itemsOrdered = ""; // stores the full string to be printed as part of the program
+
+        while(!userInput.equals("-1")){
+            itemsOrdered += userInput + "\n"; // stores the user input + a new line token for formatting; put at top to avoid it adding the "-1"
+            System.out.println("Enter an item name or type '-1' to finish:"); // prints the input statement
+            userInput = scan.nextLine(); // scans for userinput
+        }
 
         double totalTip = cost * percent * 0.01; // calculates total tip
         double totalBill = totalTip + cost; // calculates totalBill by adding cost and tip
@@ -21,8 +32,10 @@ public class TipCalculator {
         result.append("Tip per person: $" + String.format("%.2f", perPersonTip)+ "\n");
         result.append("Total cost per person: $" + String.format("%.2f", perPersonTotal)+ "\n");
         result.append("-------------------------------\n");
+        result.append("Items ordered:");
+        result.append(itemsOrdered);
 
-
+        scan.close();
         return result.toString();
     }
      //TEST YOUR PROGRAM IN main
@@ -34,4 +47,3 @@ public class TipCalculator {
         System.out.println(calculateTip(people,percent,cost));
     }
 }
-        
